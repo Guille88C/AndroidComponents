@@ -1,10 +1,11 @@
-package com.tanuki.tanucomponents.views
+package dcuestab.gcuestab.com.components.loader.components
 
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.util.AttributeSet
 import dcuestab.gcuestab.com.components.loader.R
+import dcuestab.gcuestab.com.components.loader.listeners.AnimatedArcLoaderProgressListener
 
 /**
  * Created by dacuesta on 17/9/17.
@@ -23,7 +24,7 @@ class AnimatedArcLoader : ArcLoader {
     private var increase : Int = 1
 
     var refresh : Int = 10
-    var listener : AnimatedArcLoaderListener? = null
+    var progressListener : AnimatedArcLoaderProgressListener? = null
 
 
     constructor(context: Context?) : super(context) {
@@ -45,7 +46,7 @@ class AnimatedArcLoader : ArcLoader {
             if (diff > refresh) {
                 current = Math.min((current + increase * diff / refresh).toInt(), finalCurrent)
                 millis = System.currentTimeMillis()
-                listener?.onProgress(current)
+                progressListener?.onProgress(current)
             }
             invalidate()
         }

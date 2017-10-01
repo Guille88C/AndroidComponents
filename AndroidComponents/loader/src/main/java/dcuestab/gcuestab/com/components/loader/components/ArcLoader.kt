@@ -1,4 +1,4 @@
-package com.tanuki.tanucomponents.views
+package dcuestab.gcuestab.com.components.loader.components
 
 import android.content.Context
 import android.content.res.TypedArray

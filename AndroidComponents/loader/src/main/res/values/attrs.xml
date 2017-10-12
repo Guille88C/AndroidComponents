@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ArcLoader">
-        <attr name="outsideLineSize" format="dimension" />
-        <attr name="insideLineSize" format="dimension" />
-        <attr name="outsideLineCap" format="enum" >
+        <attr name="size" format="dimension" />
+        <attr name="cap" format="enum" >
             <enum name="BUTT" value="0"/>
             <enum name="ROUND" value="1"/>
             <enum name="SQUARE" value="2"/>
         </attr>
-        <attr name="insideLineCap" format="enum" >
-            <enum name="BUTT" value="0"/>
-            <enum name="ROUND" value="1"/>
-            <enum name="SQUARE" value="2"/>
-        </attr>
-        <attr name="outsideLineColor" format="color" />
-        <attr name="insideLineColor" format="color" />
-        <attr name="total" format="integer" />
-        <attr name="current" format="integer" />
+        <attr name="color" format="color" />
+        <attr name="total" format="float" />
+        <attr name="current" format="float" />
     </declare-styleable>
 
     <declare-styleable name="AnimatedArcLoader">
-        <attr name="refresh" format="integer" />
+        <attr name="progressPerSecond" format="float" />
     </declare-styleable>
 </resources>

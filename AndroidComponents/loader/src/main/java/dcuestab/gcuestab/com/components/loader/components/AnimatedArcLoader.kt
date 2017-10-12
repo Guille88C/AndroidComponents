@@ -15,16 +15,20 @@ import dcuestab.gcuestab.com.components.loader.listeners.AnimatedArcLoaderProgre
  * @param finalCurrent Final current progress
  * @param millis Current milliseconds to check the refresh of the view
  *
- * @param refresh Milliseconds to refresh the view
- * @param event Event
+ * @param progressPerSecond Progress per second in percentage
+ * @param progress Real progress per second
+ *
+ * @param progressListener Listener that sends the current progress until the end of the animation
  */
 class AnimatedArcLoader : ArcLoader {
-    private var finalCurrent : Int = 0
-    private var millis : Long = 0
-    private var increase : Int = 1
+    var finalCurrent = 0f
+    var millis : Long = 0
+    var progressPerSecond = 1f
+    var progress = 1f
 
-    var refresh : Int = 10
     var progressListener : AnimatedArcLoaderProgressListener? = null
+
+
 
 
     constructor(context: Context?) : super(context) {
@@ -38,28 +42,51 @@ class AnimatedArcLoader : ArcLoader {
     }
 
 
+
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
         if (current < finalCurrent) {
-            val diff : Long = System.currentTimeMillis() - millis
-            if (diff > refresh) {
-                current = Math.min((current + increase * diff / refresh).toInt(), finalCurrent)
-                millis = System.currentTimeMillis()
-                progressListener?.onProgress(current)
-            }
+            val diff = System.currentTimeMillis() - millis
+            current = Math.min(current + progress * diff / 1000, finalCurrent)
+
+            millis = System.currentTimeMillis()
+
+//            progressListener?.onProgress(current)
+
             invalidate()
         }
     }
 
 
-    private fun init(context : Context?, attrs: AttributeSet?) {
-        finalCurrent = current
-        current = 0
+
+
+    override fun changeProgress(current : Float, total : Float) {
+        this.finalCurrent = current
+        this.current = 0f
+        this.total = total
 
         millis = System.currentTimeMillis()
 
-        increase = Math.max((total * .01f).toInt(), 1)
+        progress = progressPerSecond * total / 100
+
+        invalidate()
+    }
+
+    fun changeProgress(current : Float, total : Float = this.total, progressPerSecond : Float) {
+        this.progressPerSecond = progressPerSecond
+        changeProgress(current, total)
+    }
+
+
+
+
+    private fun init(context : Context?, attrs: AttributeSet?) {
+        finalCurrent = current
+        current = 0f
+
+        millis = System.currentTimeMillis()
 
         val a : TypedArray? = context?.getTheme()?.obtainStyledAttributes(
                 attrs,
@@ -67,9 +94,11 @@ class AnimatedArcLoader : ArcLoader {
                 0, 0)
 
         try {
-            refresh = a?.getInteger(R.styleable.AnimatedArcLoader_refresh, 10) ?: 10
+            progressPerSecond = a?.getFloat(R.styleable.AnimatedArcLoader_progressPerSecond, 1f) ?: 1f
         } finally {
             a?.recycle()
         }
+
+        progress = progressPerSecond * total / 100
     }
 }

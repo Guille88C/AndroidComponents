@@ -13,7 +13,7 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "dcuestab.gcuestab.com.components"
         minSdkVersion 24
@@ -39,6 +39,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    compile "org.jetbrains.anko:anko:$anko_version"
 
     compile project(":timeline")
     compile project(":loader")

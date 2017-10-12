@@ -1,44 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <dcuestab.gcuestab.com.components.loader.components.AnimatedArcLoader
-        android:id="@+id/loader"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        app:insideLineCap="BUTT"
-        app:insideLineColor="#00FF00"
-        app:insideLineSize="12dp"
-        app:outsideLineCap="BUTT"
-        app:outsideLineColor="#3300FF00"
-        app:outsideLineSize="8dp"
-        app:total="10000"
-        app:current="6000"
-        app:refresh="10"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+    <!--LOADER-->
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/progressTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="Progress: "
+        android:textSize="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/progressET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressET" />
+
+    <EditText
+        android:id="@+id/progressET"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/progressTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
         android:textSize="20dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/totalET"
+        app:layout_constraintEnd_toStartOf="@+id/totalET"
+        app:layout_constraintTop_toTopOf="@+id/totalET" />
+
+    <EditText
+        android:id="@+id/totalET"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/applyB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/loader"
-        app:layout_constraintEnd_toEndOf="@+id/loader"
-        app:layout_constraintStart_toStartOf="@+id/loader"
-        app:layout_constraintTop_toTopOf="@+id/loader" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressET"
+        android:text="apply"/>
+
+    <dcuestab.gcuestab.com.components.loader.components.ArcLoader
+        android:id="@+id/loader"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/applyB"
+        app:cap="BUTT"
+        app:color="#00FF00"
+        app:current="100"
+        app:size="12dp"
+        app:total="100"/>
+
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loader" />
+
+
+
+
+    <!--ANIMATED LOADER-->
+    <TextView
+        android:id="@+id/animatedProgressTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Progress: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/animatedProgressET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/animatedProgressET" />
+
+    <EditText
+        android:id="@+id/animatedProgressET"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/animatedProgressTV"
+        app:layout_constraintTop_toBottomOf="@+id/separator" />
+
+    <TextView
+        android:id="@+id/animatedTotalTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/animatedTotalET"
+        app:layout_constraintEnd_toStartOf="@+id/animatedTotalET"
+        app:layout_constraintTop_toTopOf="@+id/animatedTotalET" />
+
+    <EditText
+        android:id="@+id/animatedTotalET"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/separator" />
+
+    <TextView
+        android:id="@+id/animatedProgressPerSecondTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Progress per second: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/animatedProgressPerSecondET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/animatedProgressPerSecondET" />
+
+    <EditText
+        android:id="@+id/animatedProgressPerSecondET"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/animatedProgressPerSecondTV"
+        app:layout_constraintTop_toBottomOf="@+id/animatedProgressET" />
+
+    <Button
+        android:id="@+id/animatedApplyB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="apply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animatedProgressPerSecondET" />
+
+    <dcuestab.gcuestab.com.components.loader.components.AnimatedArcLoader
+        android:id="@+id/animatedLoader"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animatedApplyB"
+        app:cap="BUTT"
+        app:color="#00FF00"
+        app:current="100"
+        app:size="12dp"
+        app:total="100"
+        app:progressPerSecond="100"/>
 
 </android.support.constraint.ConstraintLayout>
